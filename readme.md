@@ -15,21 +15,19 @@ How to Use
 1. Clone the Repository
 Start by cloning this repository to your local machine:
 
-bash
 Copy code
 git clone https://github.com/your-username/plagiarism-checker.git
 cd plagiarism-checker
-2. Install Required Packages
-The application requires some Python packages. You can install them using pip:
 
-bash
+3. Install Required Packages
+The application requires some Python packages. You can install them using pip:
 Copy code
 pip install -r requirements.txt
+
 3. Set Up Your TextRazor API Key
 Sign up for a TextRazor account at TextRazor. After signing up, you'll get an API key. Replace the placeholder in the code with your API key.
 
 You can either:
-
 Set the API key in the environment variables.
 Or, directly set it in the app.py file:
 python
