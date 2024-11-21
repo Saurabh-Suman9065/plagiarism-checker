@@ -1,65 +1,67 @@
-Plagiarism Checker with TextRazor API
-Introduction
-This web application is a plagiarism checker powered by TextRazor API and built using Flask. It allows users to paste a block of text into a text box, which is then sent to the TextRazor API for natural language processing (NLP) analysis. The application retrieves detailed information about the entities and topics present in the text, which can be useful for identifying potential plagiarism or understanding the key components of the content.
+# Plagiarism Checker
 
-Features
-Text Analysis: The app sends the text input to the TextRazor API and retrieves detailed analysis, including entities and topics.
-Plagiarism Detection: Helps analyze the text and identify key entities and topics that may assist in detecting plagiarism.
-Simple User Interface: Paste your text into the input box and submit it to receive results in a clean and easy-to-understand format.
-Technologies Used
-Python: The programming language used to build the application.
-Flask: A lightweight web framework for building the web application.
-TextRazor API: An API for text analysis that helps extract meaningful data, such as entities, topics, and more, from the input text.
-HTML/CSS: Basic web technologies used to create the front-end of the application.
-How to Use
-1. Clone the Repository
-Start by cloning this repository to your local machine:
+A web application that allows users to check the plagiarism of a given text using the TextRazor API. The application supports multiple languages and provides an easy-to-use interface for checking plagiarism in real-time.
 
-Copy code
-git clone https://github.com/your-username/plagiarism-checker.git
-cd plagiarism-checker
+## Features
 
-3. Install Required Packages
-The application requires some Python packages. You can install them using pip:
-Copy code
-pip install -r requirements.txt
+- **Plagiarism Checking**: Paste your text into a textbox, and check for plagiarism by analyzing the content.
+- **Multi-language Support**: The application supports multiple languages, including English, French, German, Polish, and Hindi.
+- **Results Display**: Plagiarism results are displayed in a clear and readable format with relevant entity details.
+- **Responsive Design**: The application has a mobile-friendly interface, ensuring accessibility on various devices.
 
-3. Set Up Your TextRazor API Key
-Sign up for a TextRazor account at TextRazor. After signing up, you'll get an API key. Replace the placeholder in the code with your API key.
+## Technologies Used
 
-You can either:
-Set the API key in the environment variables.
-Or, directly set it in the app.py file:
-python
-Copy code
-textrazor.api_key = "YOUR_API_KEY"
-4. Run the Flask Application
-Once everything is set up, run the Flask app:
+- **Python**: Backend API handling with Flask.
+- **Flask**: Web framework for handling routes and requests.
+- **TextRazor**: Used to analyze text and detect plagiarism.
+- **Bootstrap 5**: Frontend framework for responsive and clean UI design.
+- **HTML/CSS**: For webpage structure and styling.
 
-bash
-Copy code
-python app.py
-The app will be available at http://localhost:5000. Open this URL in your web browser.
+## How to Use
 
-5. Using the Application
-Open the web app in your browser.
-Paste the text you want to check into the provided textbox.
-Click the "Submit" button to send the text to the TextRazor API for analysis.
-View the results, which will include a list of extracted entities (people, places, organizations, etc.) and topics (key themes) from the text.
-How You Can Use This for Your Own Projects
-You can integrate this plagiarism checker and text analysis tool into your own projects or applications. Here’s how you can adapt the solution for your own use:
+1. Clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/yourusername/plagiarism-checker.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd plagiarism-checker
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Replace the placeholder API key in `app.py` with your own TextRazor API key:
+   ```python
+   textrazor.api_key = "YOUR_API_KEY_HERE"
+   ```
+5. Run the Flask application:
+   ```bash
+   python app.py
+   ```
+6. Visit the app in your browser at `http://127.0.0.1:5000/`.
 
-1. Set Up Your Own TextRazor API Key
-Sign up at TextRazor and obtain your own API key. This will allow you to make requests to the API for text analysis.
+## Customizing for Your Own Use
 
-2. Clone and Modify the Code
-Clone this repository to your machine, and modify the code as needed. You can customize the application by:
+To use the plagiarism checker with your own API key:
+1. **Sign up for TextRazor**: Go to [TextRazor](https://www.textrazor.com/) and create an account to get your API key.
+2. **Replace the API Key**: Replace the API key in the `app.py` file with your own.
+   ```python
+   textrazor.api_key = "YOUR_API_KEY_HERE"
+   ```
+3. You can also modify the language settings in the `LANGUAGES` dictionary within `app.py` to add more languages or customize the translations.
+4. To deploy the app, you can use platforms like Heroku or DigitalOcean.
 
-Adding additional text analysis extractors from TextRazor, like sentiment or language detection.
-Modifying the user interface to suit your specific requirements or branding.
-Integrating it into your own website or application.
-3. Scaling
-If you plan to scale the app for more users, consider:
+## License
 
-Hosting the application on a cloud platform such as Heroku, AWS, or Google Cloud.
-Upgrading to a higher-tier TextRazor API key for more requests per day.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+
+### Key Sections:
+- **Features**: Highlights the core functionality of your plagiarism checker.
+- **Technologies Used**: Lists the technologies and tools you used to build the project.
+- **How to Use**: Provides clear steps to clone, set up, and run the application.
+- **Customizing for Your Own Use**: Gives instructions for others to use the project and replace the API key.
+- **License**: Mentions the license under which your project is distributed.
+
+You can modify this to suit your specific project details and deployment methods. Let me know if you need further modifications!
