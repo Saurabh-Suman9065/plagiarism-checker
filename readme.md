@@ -64,4 +64,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Customizing for Your Own Use**: Gives instructions for others to use the project and replace the API key.
 - **License**: Mentions the license under which your project is distributed.
 
-You can modify this to suit your specific project details and deployment methods. Let me know if you need further modifications!
