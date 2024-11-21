@@ -1,3 +1,6 @@
+# Name : Saurabh Suman
+# Roll No : 20222744
+# Minor Project
 # Plagiarism Checker
 
 A web application that allows users to check the plagiarism of a given text using the TextRazor API. The application supports multiple languages and provides an easy-to-use interface for checking plagiarism in real-time.
