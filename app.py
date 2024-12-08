@@ -3,7 +3,9 @@ import textrazor
 from flask import Flask, request, jsonify, render_template
 
 # Fetch TextRazor API key securely from environment variables
-TEXT_RAZOR_API_KEY =('Te2ea95cc09a2cacde98ca832582949935b21c5f5f1f65a3efb4971a1')
+TEXT_RAZOR_API_KEY = os.getenv('TEXT_RAZOR_API_KEY')
+if not TEXT_RAZOR_API_KEY:
+    raise ValueError("TextRazor API Key is not set in environment variables.")
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -17,25 +19,17 @@ def check_plagiarism(input_text):
     try:
         response = client.analyze(input_text)
 
-        entities = []
-        topics = []
-
-        # Extract entities and topics from the response
+        sources = []  # To store matched URLs
         for entity in response.entities():
-            entities.append({
-                "id": entity.id,
-                "relevance_score": entity.relevance_score,
-                "confidence_score": entity.confidence_score,
-                "freebase_types": entity.freebase_types
-            })
+            if hasattr(entity, 'wikipedia_link') and entity.wikipedia_link:
+                sources.append(entity.wikipedia_link)
+            elif hasattr(entity, 'freebase_types') and entity.freebase_types:
+                sources.extend(entity.freebase_types)
 
-        for topic in response.topics():
-            topics.append({
-                "label": topic.label,
-                "score": topic.score
-            })
+        # Ensure no duplicate URLs are returned
+        unique_sources = list(set(sources))
 
-        return {"entities": entities, "topics": topics}
+        return {"matched_urls": unique_sources}
 
     except Exception as e:
         return {"error": str(e)}
