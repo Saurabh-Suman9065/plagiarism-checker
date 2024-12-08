@@ -5,18 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Plagiarism Checker</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f4f7;
+        color: #333;
       }
 
-      #result {
-        margin-top: 20px;
-        padding: 10px;
-        border: 1px solid #ccc;
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      .logo {
+        max-width: 150px; /* Adjust the size of the logo */
+        height: auto; /* Maintain aspect ratio */
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+        background-color: #333;
         border-radius: 5px;
-        background-color: #f9f9f9;
+        margin: 20px 0;
+      }
+
+      nav a {
+        color: white;
+        padding: 14px 20px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin-bottom: 20px;
       }
 
       textarea {
@@ -26,6 +68,8 @@
         font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 5px;
+        margin-bottom: 10px;
+        resize: none;
       }
 
       button {
@@ -36,35 +80,236 @@
         color: white;
         border: none;
         border-radius: 5px;
-        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #result {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        min-width: 300px;
+      }
+
+      .info-section {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+      }
+
+      .info-section h2,
+      .info-section h3,
+      .info-section h4 {
+        color: #333;
+      }
+
+      .info-section p,
+      .info-section ul {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .info-section ul {
+        list-style-type: disc;
+        margin-left: 20px;
+      }
+
+      .info-section ul li {
+        margin-bottom: 10px;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+        }
+
+        nav a {
+          width: 100%;
+          text-align: center;
+        }
       }
     </style>
   </head>
 
   <body>
-    <h1>Plagiarism Checker</h1>
-    <textarea id="text-input" placeholder="Paste your text here..."></textarea>
-    <button onclick="checkPlagiarism()">Check Plagiarism</button>
+    <header>
+      <img src="logo.png" alt="" class="logo" />
+      <!-- Update the path to your logo -->
 
-    <div id="result"></div>
+      <h1>Plagiarism Checker</h1>
+    </header>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about-us">About Us</a>
+      <a href="/concept-ideation">Concept and Ideation</a>
+      <a href="/language">Language</a>
+    </nav>
+
+    <div class="container">
+      <textarea
+        id="text-input"
+        placeholder="Paste your text here..."
+      ></textarea>
+      <button id="checkBtn" onclick="checkPlagiarism()">
+        Check Plagiarism
+      </button>
+
+      <div id="result"></div>
+
+      <section class="info-section">
+        <h2>How to Use</h2>
+        <p>
+          To use this plagiarism checker, please copy and paste your text in the
+          box above, then click on the button that says “Check Plagiarism” and
+          sit back as your article is scanned for duplicate content.
+        </p>
+
+        <h3>Benefits of SmartPlagDetector’s Plagiarism Detector</h3>
+        <p>
+          The plagiarism checker free utility offered by SmartPlagDetector is
+          second to none due to the advantages it provides to its users. From
+          students to teachers, researchers, writers, publishers, and bloggers,
+          everyone can gain the top benefits of SmartPlagDetector’s plagiarism
+          detector, which include the following:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Quick and Hassle-Free:</strong> The plagiarism checker
+            online tool is super-fast, generating results within seconds. The
+            user-friendly interface makes the process simple and free from
+            intricacies.
+          </li>
+          <li>
+            <strong>Multi-Platform Supportive:</strong> Accessible on any
+            device—Android, iOS, Windows, Linux, or Mac. No plugin or software
+            installation needed.
+          </li>
+          <li>
+            <strong>Free Plagiarism Checker:</strong> No cost involved. Use it
+            as many times as you like without restrictions.
+          </li>
+          <li>
+            <strong>Find Matching Sources:</strong> Detects plagiarized text and
+            provides matching sources. You can download the plagiarism report
+            for free.
+          </li>
+        </ul>
+
+        <h3>Features of Our Plagiarism Checker</h3>
+        <ul>
+          <li>
+            <strong>Billions of Web Pages:</strong> Checks content against
+            billions of webpages instantly.
+          </li>
+          <li>
+            <strong>Automatic Rewriting Feature:</strong> Click to rewrite
+            plagiarized content using the built-in auto-paraphrasing tool.
+          </li>
+          <li>
+            <strong>Multiple Document Formats:</strong> Supports .doc, .docx,
+            .txt, .pdf, and more.
+          </li>
+          <li>
+            <strong>URL Integration:</strong> Check plagiarism by entering
+            website URLs.
+          </li>
+          <li>
+            <strong>Reporting Option:</strong> Download the plagiarism report
+            for documentation.
+          </li>
+          <li>
+            <strong>Sharing Option:</strong> Share the plagiarism report
+            directly within the tool.
+          </li>
+          <li>
+            <strong>Multiple Languages:</strong> Supports plagiarism checking in
+            multiple languages.
+          </li>
+          <li>
+            <strong>Cloud Compatibility:</strong> Compatible with Google Drive
+            and Dropbox for easy document access.
+          </li>
+          <li>
+            <strong>Local Storage:</strong> Upload documents directly from your
+            computer.
+          </li>
+          <li>
+            <strong>Percentage Gauges:</strong> Displays the percentage of
+            unique vs. plagiarized content.
+          </li>
+          <li>
+            <strong>List-Based, Sentence-Wise Result:</strong> Shows plagiarized
+            sentences in red and unique ones in green.
+          </li>
+          <li>
+            <strong>Highlighted Document View:</strong> View the whole document
+            with plagiarized sections highlighted in red.
+          </li>
+          <li>
+            <strong>Ability to View Matched Results:</strong> See the matched
+            external content and URLs.
+          </li>
+          <li>
+            <strong>One-Click Comparison Feature:</strong> Compare plagiarized
+            lines with similar content on Google.
+          </li>
+          <li>
+            <strong>Exclude Specific URL:</strong> Exclude content from specific
+            URLs from being checked for plagiarism.
+          </li>
+          <li>
+            <strong>Plagiarism Checker API:</strong> API for integrating
+            plagiarism detection into websites for real-time scanning.
+          </li>
+          <li>
+            <strong>Plagiarism Checker WordPress Plugin:</strong> Install the
+            plugin for automated plagiarism checking on WordPress.
+          </li>
+        </ul>
+
+        <h3>Importance of Plagiarism Detection</h3>
+        <p>
+          Plagiarism affects content creators and consumers alike. Whether
+          you're writing articles, research papers, or blog posts, ensuring your
+          work is plagiarism-free is essential to maintaining academic
+          integrity, professionalism, and credibility.
+        </p>
+
+        <h4>Consequences of Plagiarism:</h4>
+        <ul>
+          <li>Legal actions</li>
+          <li>Monetary restitution and fines</li>
+          <li>Damaged reputation</li>
+          <li>SEO penalties and lost rankings</li>
+          <li>Academic sanctions</li>
+        </ul>
+      </section>
+    </div>
 
     <script>
       function checkPlagiarism() {
         var inputText = document.getElementById("text-input").value;
-
-        // Ensure that the user has entered text
         if (inputText.trim() === "") {
           alert("Please enter some text.");
           return;
         }
 
+        document.getElementById("result").style.minWidth = "300px";
+
         $.ajax({
-          url: "/check-plagiarism", // Endpoint to send data to
-          type: "POST", // HTTP method
-          contentType: "application/json", // Send data as JSON
-          data: JSON.stringify({ text: inputText }), // Send the input text
+          url: "/check-plagiarism",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({ text: inputText }),
           success: function (response) {
-      
             if (response.matched_urls && response.matched_urls.length > 0) {
               var resultText = "Plagiarism detected! Matched URLs:<br>";
               response.matched_urls.forEach(function (url) {
@@ -76,12 +321,12 @@
                 "No plagiarism detected or no matches found.";
             }
           },
-          error: function (xhr, status, error) {
-            // Handle AJAX error
-            document.getElementById("result").innerHTML =
-              "An error occurred while checking for plagiarism.";
-          },
         });
+      }
+
+      function toggleMenu() {
+        const menu = document.querySelector(".menu");
+        menu.classList.toggle("show");
       }
     </script>
   </body>
