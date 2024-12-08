@@ -58,14 +58,13 @@
           return;
         }
 
-        // Make an AJAX request to the server
         $.ajax({
           url: "/check-plagiarism", // Endpoint to send data to
           type: "POST", // HTTP method
           contentType: "application/json", // Send data as JSON
           data: JSON.stringify({ text: inputText }), // Send the input text
           success: function (response) {
-            // Check if matched URLs are found in the response
+      
             if (response.matched_urls && response.matched_urls.length > 0) {
               var resultText = "Plagiarism detected! Matched URLs:<br>";
               response.matched_urls.forEach(function (url) {
