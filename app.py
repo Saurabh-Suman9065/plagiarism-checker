@@ -2,19 +2,15 @@ import os
 import textrazor
 from flask import Flask, request, jsonify, render_template
 
-# Fetch TextRazor API key securely from environment variables
 TEXT_RAZOR_API_KEY = os.getenv('TEXT_RAZOR_API_KEY')
 if not TEXT_RAZOR_API_KEY:
     raise ValueError("TextRazor API Key is not set in environment variables.")
 
-# Initialize Flask app
 app = Flask(__name__)
 
-# Initialize TextRazor client
 textrazor.api_key = TEXT_RAZOR_API_KEY
 client = textrazor.TextRazor(extractors=["entities", "topics"])
 
-# Function to check plagiarism using TextRazor API
 def check_plagiarism(input_text):
     try:
         response = client.analyze(input_text)
