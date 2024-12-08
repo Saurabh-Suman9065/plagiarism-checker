@@ -1,81 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plagiarism Checker</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-
-    #result {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-    }
-
-    textarea {
-      width: 100%;
-      height: 150px;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-
-<body>
-  <h1>Plagiarism Checker</h1>
-  <textarea id="text-input" placeholder="Paste your text here..."></textarea>
-  <button onclick="checkPlagiarism()">Check Plagiarism</button>
-
-  <div id="result"></div>
-
-  <script>
-    function checkPlagiarism() {
-      var inputText = document.getElementById("text-input").value;
-      if (inputText.trim() === "") {
-        alert("Please enter some text.");
-        return;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plagiarism Checker</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
       }
 
-      $.ajax({
-        url: "/check-plagiarism",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify({ "text": inputText }),
-        success: function (response) {
-          if (response.entities || response.topics) {
-            var resultText = "Entities found: " + response.entities.join(", ") + "<br>" + "Topics found: " + response.topics.join(", ");
-            document.getElementById("result").innerHTML = resultText;
-          } else {
-            document.getElementById("result").innerHTML = "No plagiarism detected or no results.";
-          }
-        },
-        error: function (xhr, status, error) {
-          document.getElementById("result").innerHTML = "An error occurred: " + error;
-        }
-      });
-    }
-  </script>
-</body>
+      #result {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
 
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Plagiarism Checker</h1>
+    <textarea id="text-input" placeholder="Paste your text here..."></textarea>
+    <button onclick="checkPlagiarism()">Check Plagiarism</button>
+
+    <div id="result"></div>
+
+    <script>
+      function checkPlagiarism() {
+        var inputText = document.getElementById("text-input").value;
+
+        // Ensure that the user has entered text
+        if (inputText.trim() === "") {
+          alert("Please enter some text.");
+          return;
+        }
+
+        // Make an AJAX request to the server
+        $.ajax({
+          url: "/check-plagiarism", // Endpoint to send data to
+          type: "POST", // HTTP method
+          contentType: "application/json", // Send data as JSON
+          data: JSON.stringify({ text: inputText }), // Send the input text
+          success: function (response) {
+            // Check if matched URLs are found in the response
+            if (response.matched_urls && response.matched_urls.length > 0) {
+              var resultText = "Plagiarism detected! Matched URLs:<br>";
+              response.matched_urls.forEach(function (url) {
+                resultText += `<a href="${url}" target="_blank">${url}</a><br>`;
+              });
+              document.getElementById("result").innerHTML = resultText;
+            } else {
+              document.getElementById("result").innerHTML =
+                "No plagiarism detected or no matches found.";
+            }
+          },
+          error: function (xhr, status, error) {
+            // Handle AJAX error
+            document.getElementById("result").innerHTML =
+              "An error occurred while checking for plagiarism.";
+          },
+        });
+      }
+    </script>
+  </body>
 </html>
